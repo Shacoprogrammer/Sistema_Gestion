@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ evento.nombre }}{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">{{ evento.nombre }}</h2>
+        <p class="card-text">{{ evento.descripcion }}</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Fecha Hora</strong>{{ evento.fecha_hora }}</li>
+            <li class="list-group-item"><strong>Ubicacion</strong>{{ evento.ubicacion }}</li>
+        </ul>
+        {% if user.rol == 'normal' %}
+            {% if user in evento.inscritos.all %}
+                <p class="mt-3 text-success">Ya estas inscrito en este curso</p>
+            {% else %}
+                <a href="{% url 'inscribir_evento' evento.pk %}" class="btn btn-primary mt-3">Inscribirse</a>
+            {% endif %}
+        {% endif %}
+        {% if user.rol == 'admin' %}
+           <h3 class="mt-4">Listado de usuarios inscritos al curso</h3> 
+           <table class="table table-stripped datatable">
+            <thead>
+                <tr>
+                   <th>Nombre</th>
+                   <th>Apellido</th> 
+                   <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in evento.inscritos.all %}
+                    <tr>
+                        <td>{{ evento.first_name }}</td>
+                        <td>{{ evento.last_name }}</td>
+                        <td>{{ evento.email }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No hay usuarios registrados en este evento</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+           </table> 
+        {% endif %}
+    </div>
+</div>   
+{% endblock %}

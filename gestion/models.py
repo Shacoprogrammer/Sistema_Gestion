@@ -16,7 +16,7 @@ class Eventos(models.Model):
     descripcion = models.TextField()
     fecha_hora = models.DateTimeField()
     ubicacion = models.CharField(max_length=250)
-    inscritos = models.ManyToManyField(Usuario, related_name='eventos inscritos', blank=True)
+    inscritos = models.ManyToManyField(Usuario, related_name='eventos_inscritos', blank=True)
 
     def __str__(self):
         return self.nombre

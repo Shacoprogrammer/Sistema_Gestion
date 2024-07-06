@@ -15,11 +15,35 @@
 
 <nav class="navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">Sistema_Gestion</a> <!-- enlace lista de eventos -->
+        <a class="navbar-brand" href="{% url 'lista_eventos' %}">Sistema_Gestion</a> <!-- enlace lista de eventos -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
         </button> 
         <!-- lista de opciones -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_eventos' %}">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mis_eventos' %}">Iniciar Sesion</a>
+                    </li>
+                    {% if user-rol == 'admin' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'crear_eventos' %}">Crear Cursos</a>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     
     
     
