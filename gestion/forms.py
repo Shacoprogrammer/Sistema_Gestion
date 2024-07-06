@@ -29,7 +29,7 @@ class RegistroUsuarioForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__( *args, **kwargs)
         for field in self.fields:
-            self.fields[field].wiget.attrs.update({'class': 'form-control'})
+            self.fields[field].widget.attrs.update({'class': 'form-control'})
         self.fields['username'].label = 'Nombre de Usuario'
         self.fields['password1'].label = 'Contraseña'
         self.fields['password2'].label = 'Confirmar Contraseña'

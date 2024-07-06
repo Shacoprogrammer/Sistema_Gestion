@@ -15,7 +15,7 @@
 
 <nav class="navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'lista_eventos' %}">Sistema_Gestion</a> <!-- enlace lista de eventos -->
+        <a class="navbar-brand" href="{% url 'lista_eventos' %}">Bienvenido, {{ user.last_name }} {{ user.first_name }}</a> <!-- enlace lista de eventos -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
         </button> 
@@ -34,6 +34,9 @@
                             <a class="nav-link" href="{% url 'crear_eventos' %}">Crear Cursos</a>
                         </li>
                     {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
+                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
@@ -63,6 +66,18 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- DataTables -->
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.datatable').Datatable({
+            language:{
+                url: '
+            }
+        });
+    });
+        
+        
+</script>
 
 {% block js_extras %}
     

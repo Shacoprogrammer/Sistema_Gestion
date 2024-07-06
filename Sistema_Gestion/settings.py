@@ -133,3 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'gestion.Usuario'
 
+LOGIN_REDIRECT_URL = 'lista_eventos'
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'login'
